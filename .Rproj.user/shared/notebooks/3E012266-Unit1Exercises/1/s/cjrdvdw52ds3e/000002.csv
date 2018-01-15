@@ -1,0 +1,2 @@
+"0","SelectX<-sample(Exes, 10, replace=TRUE)"
+"0","SelectY<-sample(Whys, 10, replace=TRUE)"

@@ -1,0 +1,2 @@
+"0","Rectangle2 %>% filter(Type == ""Judgement Sample"") %>%"
+"0","  ggplot(aes(x=Area)) + geom_histogram() + theme_light() +ggtitle(""Distribution Of Judgment Samples"")"

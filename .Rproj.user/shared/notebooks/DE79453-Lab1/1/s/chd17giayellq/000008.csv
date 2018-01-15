@@ -1,0 +1,2 @@
+"0","Rectangle2 %>% filter(Type == ""Simple Random Sample"") %>%"
+"0","  ggplot(aes(x=Area)) + geom_histogram() + theme_light()+ggtitle(""Distribution Of Simple Random Samples"")"

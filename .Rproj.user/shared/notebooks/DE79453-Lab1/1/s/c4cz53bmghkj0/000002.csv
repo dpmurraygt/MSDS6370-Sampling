@@ -1,0 +1,6 @@
+"0","Rectangle2<-read_xlsx(""Data/Lab1-Exercise2.xlsx"")"
+"0","Rectangle2 <- Rectangle2 %>% gather(""Type"", ""Area"", 2:3)"
+"0","Rectangle_Summary <- Rectangle2 %>% group_by(Type) %>% "
+"0","  mutate(meanArea = mean(Area)) %>% "
+"0","  mutate(LessThan = ifelse(Area<meanArea, 1, 0), GreaterThan = ifelse(Area>=meanArea, 1, 0)) %>% group_by(Type) %>%"
+"0","  summarise(minArea = min(Area), maxArea=max(Area), meanArea = mean(Area), greaterThan = sum(GreaterThan), lessThan = sum(LessThan))"

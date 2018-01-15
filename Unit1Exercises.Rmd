@@ -1,0 +1,44 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+```{r}
+#build an array from 1-100
+farms<-1:100
+
+#random sample of n=10
+sampleFarms <- sample(farms, size=10, replace = TRUE)
+sampleFarms
+```
+
+
+```{r}
+Exes <- 1:31
+  
+Whys <- 2:48
+
+```
+
+```{r}
+SelectX<-sample(Exes, 10, replace=TRUE)
+SelectY<-sample(Whys, 10, replace=TRUE)
+
+```
+
+```{r}
+data.frame(SelectX, SelectY)
+
+```

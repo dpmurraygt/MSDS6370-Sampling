@@ -1,0 +1,167 @@
+---
+title: "R Notebook"
+output:
+  html_document: default
+  html_notebook: default
+---
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(readxl)
+library(ggthemes)
+```
+
+#Exercise 1
+```{r}
+Rectangle_Response<-read_xlsx("Data/MSDS6370-RectangleExercise.xlsx")
+
+Rectangle_Response <- Rectangle_Response %>% gather("Type", "Area", 2:3)
+
+#Mean of Area
+#minimum area
+#maximum area
+#Number< Mean
+#Number >= Mean
+
+
+Rectangle_Summary <- Rectangle_Response %>% group_by(Type) %>% 
+  mutate(meanArea = mean(Area)) %>% 
+  mutate(LessThan = ifelse(Area<meanArea, 1, 0), GreaterThan = ifelse(Area>=meanArea, 1, 0)) %>% group_by(Type) %>%
+  summarise(minArea = min(Area), maxArea=max(Area), meanArea = mean(Area), greaterThan = sum(GreaterThan), lessThan = sum(LessThan))
+
+Rectangle_Summary
+
+```
+
+#Exercise 2
+```{r}
+Rectangle2<-read_xlsx("Data/Lab1-Exercise2.xlsx")
+
+Rectangle2 <- Rectangle2 %>% gather("Type", "Area", 2:3)
+
+Rectangle_Summary <- Rectangle2 %>% group_by(Type) %>% 
+  mutate(meanArea = mean(Area)) %>% 
+  mutate(LessThan = ifelse(Area<meanArea, 1, 0), GreaterThan = ifelse(Area>=meanArea, 1, 0)) %>% group_by(Type) %>%
+  summarise(minArea = min(Area), maxArea=max(Area), meanArea = mean(Area), greaterThan = sum(GreaterThan), lessThan = sum(LessThan))
+
+
+```
+
+#Exercise 3
+```{r fig.width=8.5, fig.height=4}
+Rectangle2 %>% filter(Type == "Judgement Sample") %>%
+  ggplot(aes(x=Area)) + geom_histogram() + theme_light() +ggtitle("Distribution Of Judgment Samples")
+
+```
+#Exercise 4
+```{r fig.width=8.5, fig.height=4}
+Rectangle2 %>% filter(Type == "Simple Random Sample") %>%
+  ggplot(aes(x=Area)) + geom_histogram() + theme_light()+ggtitle("Distribution Of Simple Random Samples")
+
+```
+
+
+```{r fig.width=8.5, fig.height=4}
+#Mega sample of samples
+
+AllFarms<-read_xlsx("Data/RectangleDims.xlsx")
+
+n_samples <- 10000
+sampleSize <-10
+
+i<-1
+
+SampleArea <- data.frame()
+
+while(i <= n_samples){
+  
+  thisSample<-100*mean(sample(AllFarms$area, sampleSize, replace=FALSE))
+  
+  
+  thisSample<- as.data.frame(thisSample)
+  thisSample$sampleNumber<-i
+  
+  SampleArea<-rbind(SampleArea, thisSample)
+  i<-i+1
+  
+}
+
+SampleArea %>% ggplot(aes(thisSample)) + geom_histogram() + theme_light() + ggtitle("Total Area Estimate - 10,000 Samples of Size 10")
+
+mean(SampleArea$thisSample)
+```
+
+
+
+
+
+
+
+
+
+
+#Exercise 6
+```{r}
+#calculate minimum possible sample from size 10:
+MinimumSample <- AllFarms %>% 
+  top_n(n=10, wt=-area) %>% group_by() %>% summarise(Mean=100*mean(area))
+
+pnorm(1, mean(AllFarms$area),sd(AllFarms$area)/sqrt(10))
+
+top_n(AllFarms, n=10, wt=area)
+
+```
+
+```{r}
+#calculate minimum possible sample from size 10:
+MaximumSample <- AllFarms %>%
+  arrange(area) %>% top_n(n=10, wt=area) %>% group_by() %>% summarise(Mean=100*mean(area))
+
+mean(AllFarms$area)
+sd(AllFarms$area)
+
+pnorm(17, mean(AllFarms$area), 5.227/sqrt(10))
+```
+
+
+
+
+#Exercise 7
+```{r}
+#Can we construct a better Judgement Sample of 10?
+BestJudgement <- Rectangle2 %>% filter(Type == "Judgement Sample") %>% mutate(DiffFromActual = abs(738-Area)) %>%
+  arrange(Area) %>% top_n(10, -DiffFromActual) %>% group_by() %>% summarise(Mean=mean(Area))
+
+MinimumSample2 <- Rectangle2 %>% filter(Type == "Judgement Sample") %>%
+  arrange(Area) %>% top_n(10, -Area) %>% group_by() %>% summarise(Mean=mean(Area))
+
+MaximumSample2 <- Rectangle2 %>% filter(Type == "Judgement Sample") %>%
+  arrange(Area) %>% top_n(10, Area) %>% group_by() %>% summarise(Mean=mean(Area))
+
+sd(Rectangle2$Area[Rectangle2$Type=="Judgement Sample"])
+mean(Rectangle2$Area[Rectangle2$Type=="Judgement Sample"])
+
+pnorm(844, mean=928.7, sd=163.5)
+
+```
+```{r}
+
+mean(SampleArea$thisSample)
+sd(SampleArea$thisSample)
+
+pnorm(780, 739.94, 157.4037)
+pnorm(1320, 739.94, 157.4037)
+
+sum(SampleArea$thisSample<=1320 & SampleArea$thisSample>=780)
+
+#How close are the judgement samples to the true mean?
+filter(Rectangle_Response, Type=="Judgement Sample") %>% mutate(DiffToActual = abs(Area-100*mean(AllFarms$area))) %>% group_by() %>%
+  summarise(mean(DiffToActual), sd(DiffToActual))
+
+
+SampleArea %>% group_by() %>% mutate(DiffToActual = abs(thisSample - 100*mean(AllFarms$area))) %>% group_by() %>% summarise(mean(DiffToActual), sd(DiffToActual))
+
+pnorm()
+```
