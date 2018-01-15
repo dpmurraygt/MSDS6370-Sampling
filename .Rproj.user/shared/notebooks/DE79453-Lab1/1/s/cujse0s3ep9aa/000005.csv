@@ -1,5 +1,9 @@
 "0","#calculate minimum possible sample from size 10:"
 "0","MinimumSample <- AllFarms %>% "
 "0","  top_n(n=10, wt=-area) %>% group_by() %>% summarise(Mean=100*mean(area))"
-"2","Error in eval(lhs, parent, parent) : object 'AllFarms' not found
+"0","pnorm(1, mean(AllFarms$area),sd(AllFarms$area)/sqrt(10))"
+"1","[1]"
+"1"," 5.550023e-05"
+"1","
 "
+"0","top_n(AllFarms, n=10, wt=area)"

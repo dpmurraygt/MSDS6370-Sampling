@@ -1,0 +1,1 @@
+"0","SampleArea %>% group_by() %>% mutate(DiffToActual = abs(thisSample - 100*mean(AllFarms$area))) %>% group_by() %>% summarise(mean(DiffToActual), sd(DiffToActual))"
