@@ -1,0 +1,39 @@
+---
+title: "MSDS 6370 Sampling - Lab 2"
+author: "Dennis Murray"
+output: html_notebook
+---
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(readxl)
+library(ggthemes)
+library(magrittr)
+```
+
+#Exercise 1
+```{r}
+Samples <- readxl::read_xlsx("Data/SamplesLab2.xlsx")
+```
+
+```{r}
+#Mean and SD for each town
+Samples %>% group_by(town) %>% summarise(MeanResponse = mean(response), sdResponse = sd(response), Responses = n())
+
+```
+
+
+```{r}
+#Look at Balance by District by Town
+Samples %>% group_by(town, District) %>% summarise(Responses = n())
+
+```
+
+#Exercise 3
+```{r}
+PercentWithEmail<-read_xlsx("Data/PercentWithEmail.xlsx", sheet="districts")
+
+```
+
