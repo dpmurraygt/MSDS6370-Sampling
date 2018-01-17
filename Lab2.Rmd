@@ -1,7 +1,10 @@
 ---
 title: "MSDS 6370 Sampling - Lab 2"
 author: "Dennis Murray"
-output: html_notebook
+output:
+  html_document: 
+    keep_md: yes
+  html_notebook: default
 ---
 
 ```{r}
@@ -27,13 +30,40 @@ Samples %>% group_by(town) %>% summarise(MeanResponse = mean(response), sdRespon
 
 ```{r}
 #Look at Balance by District by Town
-Samples %>% group_by(town, District) %>% summarise(Responses = n())
+Samples %>% group_by(town, District) %>% summarise(MeanResponse = mean(response), sdResponse = sd(response), Responses = n())
 
 ```
 
 #Exercise 3
 ```{r}
+#weighted sample
+
+#first pull in the data for each district's percent of residents with email
 PercentWithEmail<-read_xlsx("Data/PercentWithEmail.xlsx", sheet="districts")
+
+#Join to respondants
+RespondWithEmail <- inner_join(Samples, PercentWithEmail, by=c("town", "District"))
+
+#Create Weighted Response field, Group on Town, summarise mean and Std Dev
+RespondWithEmail %>% mutate(WeightedResponse = 1/PctWithEMail * response) %>% group_by(town) %>% summarise(TotalWeight = sum(1/PctWithEMail), TotalWeightedResponse = sum(WeightedResponse)) %>% mutate(MeanResponse = TotalWeightedResponse/TotalWeight)
 
 ```
 
+```{r}
+FaceSurvey<-read_xlsx("Data/facesurvey.xlsx", sheet="faceSurvey")
+
+FaceSurvey %>% group_by(town) %>% summarise(Mean=mean(response))
+
+```
+
+#Exercise 6
+```{r fig.width=8.5, fig.height=4}
+RespondWithEmail %>% ggplot(aes(x=response)) +geom_histogram(bins = 8) + theme_light() + facet_grid(~town) + ggtitle("E-Mail Survey Results") + scale_x_continuous("Recommended Spending Per Student, $ in Thousands")
+
+```
+
+#Exercise 7
+```{r fig.width=8.5, fig.height=4}
+FaceSurvey %>% ggplot(aes(x=response)) +geom_histogram(bins = 10) + theme_light() + facet_grid(~town) + ggtitle("In Person Survey Result by Town") + scale_x_continuous("Recommended Spending Per Student, $ in Thousands")
+
+```

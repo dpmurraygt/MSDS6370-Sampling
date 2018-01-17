@@ -1,0 +1,1 @@
+"0","RespondWithEmail %>% ggplot(aes(x=response)) +geom_histogram(bins = 8) + theme_light() + facet_grid(~town) + ggtitle(""E-Mail Survey Results"") + scale_x_continuous(""Recommended Spending Per Student, $ in Thousands"")"

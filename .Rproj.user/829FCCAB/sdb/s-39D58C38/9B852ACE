@@ -12,15 +12,15 @@
     "path" : null,
     "project_path" : null,
     "properties" : {
-        "cacheKey" : "7C9207E9",
+        "cacheKey" : "1D677E00",
         "caption" : "RespondWithEmail",
-        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=RespondWithEmail&cache_key=7C9207E9",
-        "displayedObservations" : 50,
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=RespondWithEmail&cache_key=1D677E00",
+        "displayedObservations" : "50",
         "environment" : "",
         "object" : "RespondWithEmail",
-        "preview" : 0,
-        "totalObservations" : 50,
-        "variables" : 5
+        "preview" : "0",
+        "totalObservations" : "50",
+        "variables" : "5"
     },
     "relative_order" : 3,
     "source_on_save" : false,

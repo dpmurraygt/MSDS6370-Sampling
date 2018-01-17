@@ -1,0 +1,2 @@
+"0","FaceSurvey<-read_xlsx(""Data/facesurvey.xlsx"", sheet=""faceSurvey"")"
+"0","FaceSurvey %>% group_by(town) %>% summarise(Mean=mean(response))"

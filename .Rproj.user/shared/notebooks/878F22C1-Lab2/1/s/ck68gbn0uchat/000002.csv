@@ -1,0 +1,7 @@
+"0","#weighted sample"
+"0","#first pull in the data for each district's percent of residents with email"
+"0","PercentWithEmail<-read_xlsx(""Data/PercentWithEmail.xlsx"", sheet=""districts"")"
+"0","#Join to respondants"
+"0","RespondWithEmail <- inner_join(Samples, PercentWithEmail, by=c(""town"", ""District""))"
+"0","#Create Weighted Response field, Group on Town, summarise mean and Std Dev"
+"0","RespondWithEmail %>% mutate(WeightedResponse = 1/PctWithEMail * response) %>% group_by(town) %>% summarise(TotalWeight = sum(1/PctWithEMail), TotalWeightedResponse = sum(WeightedResponse)) %>% mutate(MeanResponse = TotalWeightedResponse/TotalWeight)"
