@@ -1,0 +1,1 @@
+"0","e %>% ggplot(aes(x=OverallMean)) + geom_histogram(binwidth = 10) + theme_light() + ggtitle(""Sampling Distribution of 2 Stratum Sample of Actual Income"") + scale_x_continuous(""Sample Mean"")"

@@ -1,5 +1,0 @@
-"0","#Find all combinations"
-"0","FirstTaxpayer <-1:7"
-"0","ThirdTaxPayer <-8"
-"0","a<-as.data.frame(combn(FirstTaxpayer, 2))"
-"0","b<-gather(a, Iteration, Member, 1:ncol(a))"
