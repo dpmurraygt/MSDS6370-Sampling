@@ -1,5 +1,4 @@
-"0","mean(TaxPayerData$ActualIncome, na.rm=TRUE)
-"
+"0","mean(TaxPayerData$ActualIncome, na.rm=TRUE)"
 "1","[1]"
 "1"," 105.25"
 "1","
