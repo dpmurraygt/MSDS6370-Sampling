@@ -1,0 +1,3 @@
+"0","#read in a list of stores"
+"0","StoreList <- read_xlsx(""Data/StoreList.xlsx"")"
+"0","colnames(StoreList) <- c(""store"", ""address"", ""city"", ""state"")"

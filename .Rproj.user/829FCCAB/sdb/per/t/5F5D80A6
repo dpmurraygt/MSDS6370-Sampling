@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1516748193212.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "5F5D80A6",
+    "lastKnownWriteTime" : 30962681237012597,
+    "last_content_update" : 1516748193212,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "1A632CE",
+        "caption" : "SampleStores",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=SampleStores&cache_key=1A632CE",
+        "displayedObservations" : 100,
+        "environment" : "",
+        "object" : "SampleStores",
+        "preview" : 0,
+        "totalObservations" : 100,
+        "variables" : 4
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

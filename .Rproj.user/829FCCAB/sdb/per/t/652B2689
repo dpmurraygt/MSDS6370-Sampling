@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Homework 3 Code\"\nauthor: Dennis Murray\noutput:\n  html_document: \n    keep_md: yes\n  html_notebook: default\n---\n\n```{r}\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggplot2)\nlibrary(readxl)\nlibrary(ggthemes)\nlibrary(magrittr)\n```\n\n\n```{r}\n#read in a list of stores\nStoreList <- read_xlsx(\"Data/StoreList.xlsx\")\ncolnames(StoreList) <- c(\"store\", \"address\", \"city\", \"state\")\n\n```\n\n\n```{r}\n#setting seed for reproducibility\n#select a random sample of 20 stores\nn_Samples = 20\nset.seed(12939); SampleStores <- sample_n(StoreList, n_Samples) %>% arrange(store)\n\nhead(SampleStores, 20)\n```\n\n\n```{r}\n#select a systematic sample\nn_Samples = 20\n\n#random starting point between 1 and 1000\nset.seed(210201);StartingPoint<-sample(x=1:1000, 1)\n\n\n#divide remaining chunk of stores by number of samples needed\nSampleEvery <- round((NROW(StoreList) - StartingPoint)/n_Samples,0)\n\nTakeTheseSamples<-seq(from=StartingPoint, to=NROW(StoreList), by=SampleEvery)\n\n#take every nth store\nSampleStoresSystematic<- StoreList[TakeTheseSamples,]\n\nhead(SampleStoresSystematic, 20)\n```",
+    "created" : 1516747438469.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2064676068",
+    "id" : "652B2689",
+    "lastKnownWriteTime" : 1516751550,
+    "last_content_update" : 1516751550684,
+    "path" : "~/R Projects/MSDS6370 Sampling/Homework3.Rmd",
+    "project_path" : "Homework3.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

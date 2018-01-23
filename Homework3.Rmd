@@ -1,0 +1,55 @@
+---
+title: "Homework 3 Code"
+author: Dennis Murray
+output:
+  html_document: 
+    keep_md: yes
+  html_notebook: default
+---
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(readxl)
+library(ggthemes)
+library(magrittr)
+```
+
+
+```{r}
+#read in a list of stores
+StoreList <- read_xlsx("Data/StoreList.xlsx")
+colnames(StoreList) <- c("store", "address", "city", "state")
+
+```
+
+
+```{r}
+#setting seed for reproducibility
+#select a random sample of 20 stores
+n_Samples = 20
+set.seed(12939); SampleStores <- sample_n(StoreList, n_Samples) %>% arrange(store)
+
+head(SampleStores, 20)
+```
+
+
+```{r}
+#select a systematic sample
+n_Samples = 20
+
+#random starting point between 1 and 1000
+set.seed(210201);StartingPoint<-sample(x=1:1000, 1)
+
+
+#divide remaining chunk of stores by number of samples needed
+SampleEvery <- round((NROW(StoreList) - StartingPoint)/n_Samples,0)
+
+TakeTheseSamples<-seq(from=StartingPoint, to=NROW(StoreList), by=SampleEvery)
+
+#take every nth store
+SampleStoresSystematic<- StoreList[TakeTheseSamples,]
+
+head(SampleStoresSystematic, 20)
+```
