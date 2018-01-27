@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1517012983817.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "9F2D4C35",
+    "lastKnownWriteTime" : 30962681237012597,
+    "last_content_update" : 1517012983817,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "7FAFF2C",
+        "caption" : "AllPossibleCombosTall",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=AllPossibleCombosTall&cache_key=7FAFF2C",
+        "displayedObservations" : 30,
+        "environment" : "",
+        "object" : "AllPossibleCombosTall",
+        "preview" : 0,
+        "totalObservations" : 30,
+        "variables" : 1
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

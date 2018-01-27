@@ -1,0 +1,4 @@
+"0","GPA <- c(3.5, 2..7, 3.1, 3.2, 2.4)
+"
+"2","Error: unexpected numeric constant in ""GPA <- c(3.5, 2..7""
+"

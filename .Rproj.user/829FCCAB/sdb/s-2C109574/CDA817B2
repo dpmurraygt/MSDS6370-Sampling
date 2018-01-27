@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1517013168172.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "CDA817B2",
+    "lastKnownWriteTime" : 30962681237012597,
+    "last_content_update" : 1517013168172,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "FADC8515",
+        "caption" : "AllPossibleCombos",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=AllPossibleCombos&cache_key=FADC8515",
+        "displayedObservations" : 30,
+        "environment" : "",
+        "object" : "AllPossibleCombos",
+        "preview" : 0,
+        "totalObservations" : 30,
+        "variables" : 1
+    },
+    "relative_order" : 13,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
