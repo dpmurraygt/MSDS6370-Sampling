@@ -1,0 +1,3 @@
+"0","sample_Size = 50"
+"0","CountsByStrata <- IndustryTwo %>% group_by(stratum) %>% summarise(count=n(), Size = sd(mos)) %>% mutate(share=Size/sum(Size)) %>% mutate(FromThisStratum= round(sample_Size * share, 0))"
+"0","CountsByStrata"

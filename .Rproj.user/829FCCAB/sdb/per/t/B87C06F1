@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1517811323453.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "B87C06F1",
+    "lastKnownWriteTime" : 3419473789575321445,
+    "last_content_update" : 1517811323453,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "C1BDC761",
+        "caption" : "IndustryTwo",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=IndustryTwo&cache_key=C1BDC761",
+        "displayedObservations" : 373,
+        "environment" : "",
+        "object" : "IndustryTwo",
+        "preview" : 0,
+        "totalObservations" : 373,
+        "variables" : 5
+    },
+    "relative_order" : 15,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

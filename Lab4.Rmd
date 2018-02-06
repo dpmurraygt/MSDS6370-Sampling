@@ -1,0 +1,108 @@
+---
+title: "Lab 4 R Version"
+output: html_notebook
+---
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(readxl)
+library(ggthemes)
+library(magrittr)
+```
+
+
+```{r}
+IndustryTwo<-read_xlsx("Lab4_Files/MSDS6370_LAB04.xlsx")
+
+```
+
+You may use SAS proc means or Excel to calculate the means, sums, and standard deviations required for the allocations in No. 1, 2, 3.
+
+1.  For a sample of size 50 from the population for Industry 2, use proportional allocation to determine the sample size for each of the 5 strata.  Enter these in Table 1 on the Results page.
+
+```{r}
+sample_Size = 50
+CountsByStrata <- IndustryTwo %>% group_by(stratum) %>% summarise(count=n()) %>% mutate(share=count/sum(count)) %>% mutate(FromThisStratum= round(sample_Size * share, 0))
+CountsByStrata
+
+```
+
+2.  For a sample of size 50 from the population for Industry 2, determine the sample size for each of the 5 strata using Neyman allocation where the administrative measure of size of each unit is used in calculating standard deviation for each stratum.  Enter these in Table 2 on the Results page
+
+```{r}
+sample_Size = 50
+CountsByStrata <- IndustryTwo %>% group_by(stratum) %>% summarise(count=n(), Size = sd(mos)) %>% mutate(share=Size/sum(Size)) %>% mutate(FromThisStratum= round(sample_Size * share, 0))
+CountsByStrata
+
+```
+
+3.  For a sample of size 50 from the population for Industry 2, determine the sample size for each of the 5 strata using the sum of the measure of size in stratum h in place of N_h σ_h in a Neyman allocation.  Enter these in Table 3 on the Results page.   
+
+
+
+```{r}
+sample_Size = 50
+CountsByStrata <- IndustryTwo %>% group_by(stratum) %>% summarise(count=n(), Size = sum(mos)) %>% mutate(share=Size/sum(Size)) %>% mutate(FromThisStratum= round(sample_Size * share, 0))
+CountsByStrata
+
+
+```
+
+
+4. 
+(a) Use SAS Procedure Surveyselect to select a sample of size 50 using the proportional allocation to strata as determined in No. 1 above. Output the selected units to a file named propsample. 
+```{r}
+stratumName<-c(1, 2, 3, 4, 5)
+selection<-c(19, 13, 8, 5, 5)
+
+thisStratum <- 1
+
+AllSamples<-data.frame()
+
+for (thisStratum in stratumName) {
+  Sampled <-  IndustryTwo %>% filter(stratum == thisStratum) %>% sample_n(selection[thisStratum], replace=FALSE) %>% group_by(stratum) %>% summarise(SampleMean = mean(Sales), SampleSD = sd(Sales))
+
+  AllSamples <- rbind(AllSamples, Sampled)
+  
+}
+
+```
+
+
+(b)  Use SAS Procedure Surveymeans and the sample selected using Neyman allocation to form the same estimates in 4 (a).  Enter the estimates from both samples on the Results page.  
+```{r}
+stratumName<-c(1, 2, 3, 4, 5)
+selection<-c(4, 5, 10, 13, 18)
+
+thisStratum <- 1
+
+AllSamples<-data.frame()
+
+for (thisStratum in stratumName) {
+  Sampled <-  IndustryTwo %>% filter(stratum == thisStratum) %>% sample_n(selection[thisStratum], replace=FALSE) %>% group_by(stratum) %>% summarise(SampleMean = mean(Sales), SampleSD = sd(Sales))
+
+  AllSamples <- rbind(AllSamples, Sampled)
+  
+}
+
+```
+
+(C)  Use SAS Procedure Surveymeans and the sample selected using Neyman allocation to form the same estimates in 4 (a).  Enter the estimates from both samples on the Results page.  
+```{r}
+stratumName<-c(1, 2, 3, 4, 5)
+selection<-c(3, 7, 11, 12, 17)
+
+thisStratum <- 1
+
+AllSamples<-data.frame()
+
+for (thisStratum in stratumName) {
+  Sampled <-  IndustryTwo %>% filter(stratum == thisStratum) %>% sample_n(selection[thisStratum], replace=FALSE) %>% group_by(stratum) %>% summarise(SampleMean = mean(Sales), SampleSD = sd(Sales))
+
+  AllSamples <- rbind(AllSamples, Sampled)
+  
+}
+
+```
