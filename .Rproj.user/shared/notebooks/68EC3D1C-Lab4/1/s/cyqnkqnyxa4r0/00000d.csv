@@ -1,0 +1,1 @@
+"0","IndustryTwo %>% ggplot(aes(x=mos)) + geom_histogram() + facet_wrap(~stratum, ncol=5) + scale_x_continuous(breaks=c(0, 500000)) + ggtitle(""MOS by Stratum"")"

@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1518065549572.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "AD6447AB",
+    "lastKnownWriteTime" : 30962681237012597,
+    "last_content_update" : 1518065549572,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "9253CD32",
+        "caption" : "CountsByStrata",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=CountsByStrata&cache_key=9253CD32",
+        "displayedObservations" : 5,
+        "environment" : "",
+        "object" : "CountsByStrata",
+        "preview" : 0,
+        "totalObservations" : 5,
+        "variables" : 5
+    },
+    "relative_order" : 14,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

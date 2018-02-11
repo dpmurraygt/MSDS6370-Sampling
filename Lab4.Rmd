@@ -18,13 +18,19 @@ IndustryTwo<-read_xlsx("Lab4_Files/MSDS6370_LAB04.xlsx")
 
 ```
 
+
+```{r fig.width=8.5, fig.height=4}
+IndustryTwo %>% ggplot(aes(x=mos)) + geom_histogram() + facet_wrap(~stratum, ncol=5) + scale_x_continuous(breaks=c(0, 500000)) + ggtitle("MOS by Stratum")
+
+```
+
 You may use SAS proc means or Excel to calculate the means, sums, and standard deviations required for the allocations in No. 1, 2, 3.
 
 1.  For a sample of size 50 from the population for Industry 2, use proportional allocation to determine the sample size for each of the 5 strata.  Enter these in Table 1 on the Results page.
 
 ```{r}
 sample_Size = 50
-CountsByStrata <- IndustryTwo %>% group_by(stratum) %>% summarise(count=n()) %>% mutate(share=count/sum(count)) %>% mutate(FromThisStratum= round(sample_Size * share, 0))
+CountsByStrata <- IndustryTwo %>% group_by(stratum) %>% summarise(count=n()) %>% mutate(share=count/sum(count)) %>% mutate(FromThisStratum= round(sample_Size * share, 0), Unrounded=(sample_Size * share))
 CountsByStrata
 
 ```
@@ -33,7 +39,7 @@ CountsByStrata
 
 ```{r}
 sample_Size = 50
-CountsByStrata <- IndustryTwo %>% group_by(stratum) %>% summarise(count=n(), Size = sd(mos)) %>% mutate(share=Size/sum(Size)) %>% mutate(FromThisStratum= round(sample_Size * share, 0))
+CountsByStrata <- IndustryTwo %>% group_by(stratum) %>% summarise(count=n(), Size = sd(mos)) %>% mutate(share=Size/sum(Size)) %>% mutate(weight=Size, FromThisStratum= round(sample_Size * share, 0), unrounded=sample_Size * share)
 CountsByStrata
 
 ```
@@ -44,7 +50,7 @@ CountsByStrata
 
 ```{r}
 sample_Size = 50
-CountsByStrata <- IndustryTwo %>% group_by(stratum) %>% summarise(count=n(), Size = sum(mos)) %>% mutate(share=Size/sum(Size)) %>% mutate(FromThisStratum= round(sample_Size * share, 0))
+CountsByStrata <- IndustryTwo %>% group_by(stratum) %>% summarise(count=n(), Size = sum(mos)) %>% mutate(share=Size/sum(Size)) %>% mutate(weight=Size, FromThisStratum= round(sample_Size * share, 0), unrounded=sample_Size * share)
 CountsByStrata
 
 
