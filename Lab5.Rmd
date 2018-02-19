@@ -1,0 +1,75 @@
+---
+title: "Lab 5"
+output: html_notebook
+---
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(readxl)
+library(ggthemes)
+library(magrittr)
+
+
+```
+
+#Simulation of Dallas Study
+
+```{r}
+Waited<-rep(1, 60000)
+DidntWait <-rep(0, 240000)
+
+WaitLongerThan10 <- append(Waited, DidntWait)
+
+North <- data.frame("North", WaitLongerThan10)
+
+colnames(North) <- c("Region", "WaitLongerThan10")
+
+Waited<-rep(1, 160000)
+DidntWait <-rep(0, 240000)
+
+WaitLongerThan10 <- append(Waited, DidntWait)
+
+Central <- data.frame("Central", WaitLongerThan10)
+
+colnames(Central) <- c("Region", "WaitLongerThan10")
+
+Waited<-rep(1, 240000)
+DidntWait <-rep(0, 160000)
+
+WaitLongerThan10 <- append(Waited, DidntWait)
+
+South <- data.frame("South", WaitLongerThan10)
+
+colnames(South) <- c("Region", "WaitLongerThan10")
+
+AllVoters <- rbind(North, Central)
+
+AllVoters <- rbind(AllVoters, South)
+```
+
+
+```{r}
+nSurvey <- 400
+
+repetitions <- 10000
+i<- 1
+SampleProportions <- data.frame()
+
+while (i <= repetitions) {
+  
+  thisSample <- sample_n(AllVoters, nSurvey)
+  Proportion <- thisSample %>% mutate(Iteration = 1) %>% group_by(Iteration) %>% summarise(Proportion = sum(WaitLongerThan10)/nSurvey)
+  
+  SampleProportions <- rbind(SampleProportions, Proportion)
+  i<- i+1
+  
+}
+
+sd(SampleProportions$Proportion)
+mean(SampleProportions$Proportion)
+
+
+```
+
